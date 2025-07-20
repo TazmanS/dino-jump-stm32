@@ -14,9 +14,9 @@
 #define I2C1_TIMINGR (*(volatile uint32_t *)0x40005410)
 #define I2C1_ISR (*(volatile uint32_t *)0x40005418)
 #define I2C1_TXDR (*(volatile uint32_t *)0x40005428)
-#define I2C1_ICR (*(volatile uint32_t *)0x4000541C) // mb error
+#define I2C1_ICR (*(volatile uint32_t *)0x4000541C)
 
-#define PCF8574_ADDR (0x27 << 1) // Адрес в формате для записи
+#define PCF8574_ADDR (0x27 << 1)
 #define SDA_PIN 9
 #define SCL_PIN 8
 
