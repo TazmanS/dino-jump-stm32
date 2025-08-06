@@ -33,10 +33,15 @@ void lcd_send_data(uint8_t data)
   lcd_write(data, 1);
 }
 
-void lcd_send_string(const char *str)
+void display_print(const char *str)
 {
   while (*str)
     lcd_send_data(*str++);
+}
+
+void display_clear()
+{
+  lcd_write(0x01, 0);
 }
 
 void lcd_init(void)
@@ -52,7 +57,7 @@ void lcd_init(void)
 
   lcd_send_cmd(0x28); // 2 line, 5x8
   lcd_send_cmd(0x08); // LCD off
-  lcd_send_cmd(0x01); // reset
+  display_clear();    // reset
   delay_ms(2);
   lcd_send_cmd(0x06); // cursor right
   lcd_send_cmd(0x0C); // LCD on, cursor off.
