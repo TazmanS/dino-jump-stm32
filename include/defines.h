@@ -9,6 +9,7 @@
 
 #define GPIOA_MODER (*(volatile uint32_t *)0x48000000) // GPIOA pin configuration register
 #define GPIOA_IDR (*(volatile uint32_t *)0x48000010)   // GPIOA input data register
+#define GPIOA_ODR (*(volatile uint32_t *)0x48000014)   // GPIOA output data register
 
 #define EXTI_IMR (*(volatile uint32_t *)0x40010400)   // EXTI interrupt mask register
 #define EXTI_FTSR (*(volatile uint32_t *)0x4001040C)  // EXTI falling trigger selection register
