@@ -1,4 +1,7 @@
-#include "lcd.h"
+#include "lcd.hpp"
+#include "defines.hpp"
+#include "i2c1.hpp"
+#include "delay.hpp"
 
 void lcd_write(uint8_t data, uint8_t rs)
 {

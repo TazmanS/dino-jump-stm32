@@ -1,8 +1,7 @@
-#ifndef __DEFINES_H__
-#define __DEFINES_H__
+#pragma once
 
 #include <stdint.h>
-#include "pins.h"
+#include "pins.hpp"
 
 #define RCC_AHBENR (*(volatile uint32_t *)0x40021014)
 #define RCC_APB1ENR (*(volatile uint32_t *)0x4002101C)
@@ -30,5 +29,3 @@
 #define I2C1_TXDR (*(volatile uint32_t *)0x40005428)
 #define I2C1_ICR (*(volatile uint32_t *)0x4000541C)
 #define PCF8574_ADDR (0x27 << 1)
-
-#endif

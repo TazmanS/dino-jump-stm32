@@ -1,4 +1,5 @@
-#include "i2c1.h"
+#include "i2c1.hpp"
+#include "defines.hpp"
 
 void i2c1_write(uint8_t data)
 {
