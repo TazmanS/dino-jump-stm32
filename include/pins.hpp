@@ -1,5 +1,9 @@
 #pragma once
 
+// PA
+#define ANALOG_PIN_0 0
+#define ANALOG_PIN_1 1
+
 // PB
 #define SDA_PIN 9
 #define SCL_PIN 8

@@ -2,6 +2,7 @@
 #include "i2c1.hpp"
 #include "delay.hpp"
 #include "interrupts.hpp"
+#include "joystick.hpp"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -23,6 +24,7 @@ void init()
   delay_ms(10);
 
   interruptors_config();
+  joystick_adc_dma_init();
 }
 
 int main(void)

@@ -3,7 +3,7 @@
 
 volatile uint32_t ms_ticks = 0;
 
-static void tim3_trgo_init(void)
+void tim3_trgo_init(void)
 {
   RCC_APB1ENR |= (1 << 1);
   TIM3_CR1 = 0;
