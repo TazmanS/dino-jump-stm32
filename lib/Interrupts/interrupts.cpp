@@ -1,7 +1,7 @@
 #include "interrupts.hpp"
 #include "defines.hpp"
 
-#include "Screen/screen.hpp"
+#include "components/Screen/screen.hpp"
 
 void interruptors_config(void)
 {

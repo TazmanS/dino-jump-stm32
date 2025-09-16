@@ -14,6 +14,7 @@
 #define GPIOA_IDR (*(volatile uint32_t *)(GPIOA_BASE + 0x10))   // GPIO port input data register
 #define GPIOA_ODR (*(volatile uint32_t *)(GPIOA_BASE + 0x14))   // GPIO port output data register
 #define GPIOA_PUPDR (*(volatile uint32_t *)(GPIOA_BASE + 0x0C)) // GPIO port pull-up/pull-down register
+#define GPIOA_AFRL (*(volatile uint32_t *)(GPIOA_BASE + 0x20))
 
 // ===== GPIOB (General-Purpose I/O Port B) =====
 #define GPIOB_BASE 0x48000400
@@ -70,3 +71,11 @@
 // ===== ADC12_COMMON (Shared registers for ADC1 and ADC2) =====
 #define ADC12_COMMON_BASE 0x50000300u
 #define ADC12_CCR (*(volatile uint32_t *)(ADC12_COMMON_BASE + 0x08)) // Common control register (clock mode, multi ADC config)
+
+// ===== USART2 (Universal Synchronous/Asynchronous Receiver/Transmitter) =====
+#define USART_BASE 0x40004400
+#define USART2_CR1 (*(volatile uint32_t *)(USART_BASE + 0x00)) // Control register 1 (включение USART, включение RX/TX, задание формата кадра, разрешение прерываний)
+#define USART2_BRR (*(volatile uint32_t *)(USART_BASE + 0x0C)) // Baud rate register (коэффициенты для установки скорости передачи, зависят от частоты шины APB1)
+#define USART2_ISR (*(volatile uint32_t *)(USART_BASE + 0x1C)) // Interrupt and status register (флаги: TX пуст, RX полный, ошибки и т.п.)
+#define USART2_RDR (*(volatile uint32_t *)(USART_BASE + 0x24)) // Receive data register (регистр приёма; из него читается байт, принятый с линии RX)
+#define USART2_TDR (*(volatile uint32_t *)(USART_BASE + 0x28)) // Transmit data register (регистр передачи; в него пишется байт, чтобы отправить через TX)
