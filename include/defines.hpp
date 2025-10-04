@@ -40,6 +40,7 @@
 #define TIM3_ARR (*(volatile uint32_t *)(TIM3_BASE + 0x2C))  // Auto-reload register
 #define TIM3_DIER (*(volatile uint32_t *)(TIM3_BASE + 0x0C)) // DMA/interrupt enable register
 #define TIM3_SR (*(volatile uint32_t *)(TIM3_BASE + 0x10))   // Status register (flags like UIF)
+#define TIM3_CNT (*(volatile uint32_t *)(TIM3_BASE + 0x24))
 
 // ===== I2C1 (Inter-Integrated Circuit 1) =====
 #define I2C1_BASE 0x40005400
