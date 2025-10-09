@@ -4,6 +4,7 @@
 #include "interrupts.hpp"
 #include "joystick.hpp"
 #include "usart.hpp"
+#include "components/Screen/screen.hpp"
 
 #include "defines.hpp"
 
@@ -13,10 +14,31 @@
 #include "dma.hpp"
 #include <stdio.h>
 
-void vTaskMenu()
+void vTaskMenu(void *pvParameters)
 {
+  (void)pvParameters;
+
+  static bool wasPressed = false;
   while (1)
   {
+    uint16_t adc_x = adc_get_x();
+
+    if ((adc_x > 3000) & !wasPressed)
+    {
+      screen.next();
+
+      wasPressed = true;
+    }
+    else if ((adc_x < 500) & !wasPressed)
+    {
+      screen.prev();
+
+      wasPressed = true;
+    }
+    else if ((adc_x < 2500) & (adc_x > 1500))
+    {
+      wasPressed = false;
+    }
 
     vTaskDelay(pdMS_TO_TICKS(100));
   }
@@ -39,19 +61,19 @@ int main(void)
   init();
 
   usart_send_str("Terminal ready\r\n");
-  display_print("Hello Worlds1");
+  // display_print("Hello Worlds1");
 
-  // xTaskCreate((TaskFunction_t)vTaskMenu, "menu", 128, NULL, 1, NULL);
-  // vTaskStartScheduler();
+  screen.render();
+
+  xTaskCreate((TaskFunction_t)vTaskMenu, "menu", 128, NULL, 1, NULL);
+  vTaskStartScheduler();
 
   while (1)
   {
-    char buf[16];
-    uint16_t val = adc_get_x();
-    sprintf(buf, "%u\r\n", val);
-    usart_send_str(buf);
-
-    for (volatile int i = 0; i < 500000; i++)
-      __asm volatile("nop");
   }
 }
+
+// char buf[16];
+// uint16_t val = adc_get_x();
+// sprintf(buf, "%u\r\n", val);
+// usart_send_str(buf);
