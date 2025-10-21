@@ -18,29 +18,14 @@ void vTaskMenu(void *pvParameters)
 {
   (void)pvParameters;
 
-  static bool wasPressed = false;
   while (1)
   {
     uint16_t adc_x = adc_get_x();
+    uint16_t adc_y = adc_get_y();
 
-    if ((adc_x > 3000) & !wasPressed)
-    {
-      screen.next();
+    screen.check(adc_x, adc_y);
 
-      wasPressed = true;
-    }
-    else if ((adc_x < 500) & !wasPressed)
-    {
-      screen.prev();
-
-      wasPressed = true;
-    }
-    else if ((adc_x < 2500) & (adc_x > 1500))
-    {
-      wasPressed = false;
-    }
-
-    vTaskDelay(pdMS_TO_TICKS(100));
+    vTaskDelay(pdMS_TO_TICKS(50));
   }
 }
 
@@ -61,7 +46,7 @@ int main(void)
   init();
 
   usart_send_str("Terminal ready\r\n");
-  // display_print("Hello Worlds1");
+  // display_print("Hello Worlds");
 
   screen.render();
 
@@ -72,8 +57,3 @@ int main(void)
   {
   }
 }
-
-// char buf[16];
-// uint16_t val = adc_get_x();
-// sprintf(buf, "%u\r\n", val);
-// usart_send_str(buf);

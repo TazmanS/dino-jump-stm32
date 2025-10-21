@@ -1,0 +1,47 @@
+{
+  "start": {
+    "title": "Start",
+    "onEnter": "Start game",
+    "children": null,
+    "isChangeable": false,
+    "changePercent": 0,
+    "childCount": 0
+  },
+  "about": {
+    "title": "About",
+    "onEnter": "Show info about me",
+    "children": null,
+    "isChangeable": false,
+    "changePercent": 0,
+    "childCount": 0
+  },
+  "settings": {
+    "title": "Settings",
+    "onEnter": "Show settings",
+    "children": [
+      {
+        "difficulty": {
+          "title": "Game difficulty",
+          "onEnter": "Save game difficulty",
+          "children": null,
+          "isChangeable": true,
+          "changePercent": 0,
+          "childCount": 0
+        }
+      },
+      {
+        "sound": {
+          "title": "Sound level",
+          "onEnter": "Save sound level",
+          "children": null,
+          "isChangeable": true,
+          "changePercent": 0,
+          "childCount": 0
+        }
+      }
+    ],
+    "isChangeable": false,
+    "changePercent": 0,
+    "childCount": 2
+  }
+}
