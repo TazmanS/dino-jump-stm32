@@ -23,20 +23,45 @@ void interruptors_config(void)
   NVIC_ISER0 |= (1 << 7);
 }
 
-extern "C" void EXTI0_IRQHandler() // up
+static Callback first_callback = nullptr;
+static Callback second_callback = nullptr;
+
+void EXTI0_callback(Callback callback)
+{
+  first_callback = callback;
+};
+
+void EXTI0_callback()
+{
+  if (first_callback)
+    first_callback();
+};
+
+void EXTI1_callback(Callback callback)
+{
+  second_callback = callback;
+};
+
+void EXTI1_callback()
+{
+  if (second_callback)
+    second_callback();
+};
+
+extern "C" void EXTI0_IRQHandler()
 {
   if (EXTI_PR & (1 << BUTTON_UP))
   {
     EXTI_PR |= (1 << BUTTON_UP);
-    screen.next();
+    EXTI0_callback();
   }
 }
 
-extern "C" void EXTI1_IRQHandler() // down
+extern "C" void EXTI1_IRQHandler()
 {
   if (EXTI_PR & (1 << BUTTON_DOWN))
   {
     EXTI_PR |= (1 << BUTTON_DOWN);
-    screen.prev();
+    EXTI1_callback();
   }
 }

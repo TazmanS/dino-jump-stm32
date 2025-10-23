@@ -1,89 +1,69 @@
 #include "screen.hpp"
+#include "screen-config.hpp"
 #include "lcd.hpp"
 
-Screen::Screen(const MenuItem *root, uint8_t rootCount)
-    : currentItems(root),
-      currentCount(rootCount),
-      currentIndex(0),
-      depth(0)
+Screen::Screen(const MenuItem *root, uint8_t root_count)
+    : current_items{root},
+      current_count{root_count},
+      current_index{0},
+      depth{0}
 {
 }
 
 void Screen::next()
 {
-  if (!currentCount)
+  if (!current_count)
     return;
-  currentIndex = (uint8_t)((currentIndex + 1) % currentCount);
+  current_index = (uint8_t)((current_index + 1) % current_count);
 
   render();
 };
 void Screen::prev()
 {
-  if (!currentCount)
+  if (!current_count)
     return;
 
-  currentIndex = (currentIndex == 0) ? (uint8_t)(currentCount - 1) : (uint8_t)(currentIndex - 1);
+  current_index = (current_index == 0) ? (uint8_t)(current_count - 1) : (uint8_t)(current_index - 1);
 
   render();
 };
 
-void up() {};
-void down() {};
-void check(uint16_t adc_x, uint16_t y)
+void Screen::up() {};
+void Screen::down() {};
+
+void Screen::check(uint16_t adc_x, uint16_t y)
 {
-  static bool wasPressed = false;
-  if ((adc_x > 3000) & !wasPressed)
+  static bool was_pressed = false;
+  if ((adc_x > 3000) & !was_pressed)
   {
     screen.next();
 
-    wasPressed = true;
+    was_pressed = true;
   }
-  else if ((adc_x < 500) & !wasPressed)
+  else if ((adc_x < 500) & !was_pressed)
   {
     screen.prev();
 
-    wasPressed = true;
+    was_pressed = true;
   }
   else if ((adc_x < 2500) & (adc_x > 1500))
   {
-    wasPressed = false;
+    was_pressed = false;
   }
 }
 
 void Screen::enter() {};
 void Screen::back() {};
+
 void Screen::render() const
 {
   display_clear();
-  display_print(currentTitle());
+  display_print(current_title());
 };
 
-const char *Screen::currentTitle() const
+const char *Screen::current_title() const
 {
-  return currentItems[currentIndex].title;
+  return current_items[current_index].title;
 };
 
-void startAction() {};
-
-void aboutAction() {};
-
-void settingsAction() {};
-
-void saveDifficulty(int16_t newValue) {};
-
-void saveSound(int16_t newValue) {};
-
-int16_t default_difficulty = 3;
-int16_t default_sound = 25;
-
-static constexpr MenuItem rootItems[] = {
-    {"Start", startAction, nullptr, nullptr, 0},
-    {"About", aboutAction, nullptr, nullptr, 0},
-    {"Settings", settingsAction,
-     (MenuItem[]){
-         {"Difficulty", nullptr, nullptr, (ChangeBinding[]){&default_difficulty, 0, 10, 1, saveDifficulty}, 0},
-         {"Sound", nullptr, nullptr, (ChangeBinding[]){&default_sound, 0, 100, 10, saveSound}, 0}},
-     nullptr, 2},
-};
-
-Screen screen(rootItems, (uint8_t)(sizeof rootItems) / (sizeof rootItems[0]));
+Screen screen(root_items, menu_length);

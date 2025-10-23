@@ -1,3 +1,8 @@
 #pragma once
 
-void interruptors_config(void);
+using Callback = void (*)();
+
+void interruptors_config();
+
+void EXTI0_callback(Callback callback);
+void EXTI1_callback(Callback callback);
