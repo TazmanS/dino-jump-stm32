@@ -4,7 +4,7 @@
 #include "interrupts.hpp"
 #include "joystick.hpp"
 #include "usart.hpp"
-#include "components/Screen/screen.hpp"
+#include "components/DinoJump/dino-jump.hpp"
 
 #include "defines.hpp"
 
@@ -23,7 +23,7 @@ void vTaskMenu(void *pvParameters)
     uint16_t adc_x = adc_get_x();
     uint16_t adc_y = adc_get_y();
 
-    screen.check(adc_x, adc_y);
+    dino_jump.calculateMovement(adc_x, adc_y);
 
     vTaskDelay(pdMS_TO_TICKS(50));
   }
@@ -48,7 +48,7 @@ int main(void)
   usart_send_str("Terminal ready\r\n");
   // display_print("Hello Worlds");
 
-  screen.render();
+  dino_jump.start();
 
   xTaskCreate((TaskFunction_t)vTaskMenu, "menu", 128, NULL, 1, NULL);
   vTaskStartScheduler();

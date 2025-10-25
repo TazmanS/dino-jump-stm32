@@ -1,5 +1,5 @@
-#include "screen-config.hpp"
-#include "screen-actions.hpp"
+#include "./menu-config.hpp"
+#include "./menu-actions.hpp"
 
 int16_t default_difficulty = 3;
 int16_t default_sound = 25;

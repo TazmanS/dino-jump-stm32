@@ -1,5 +1,7 @@
 #pragma once
 
+#include "./components/Navigation/navigation.hpp"
+
 #include <stdint.h>
 
 struct ChangeBinding
@@ -20,20 +22,16 @@ struct MenuItem
   uint8_t child_count;
 };
 
-class Screen
+class Menu
 {
 public:
-  Screen(const MenuItem *root, uint8_t root_count);
+  Menu(const MenuItem *root, uint8_t root_count);
 
   void next();
   void prev();
   void up();
   void down();
   void render() const;
-
-  void check(uint16_t x, uint16_t y); // move to joyDir
-  void enter();                       // move to interrupt
-  void back();                        // move to interrupt
 
   const char *current_title() const;
 
@@ -53,5 +51,3 @@ private:
   uint8_t depth;
   Level stack[k_max_depth];
 };
-
-extern Screen screen;

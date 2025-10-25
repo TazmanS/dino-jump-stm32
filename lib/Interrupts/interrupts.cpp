@@ -1,8 +1,6 @@
 #include "interrupts.hpp"
 #include "defines.hpp"
 
-#include "components/Screen/screen.hpp"
-
 void interruptors_config(void)
 {
   RCC_AHBENR |= (1 << 17);
