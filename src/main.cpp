@@ -55,5 +55,12 @@ int main(void)
 
   while (1)
   {
+    // char buf[16];
+    // uint16_t val = adc_get_x();
+    // sprintf(buf, "%u\r\n", val);
+    // usart_send_str(buf);
+
+    // for (volatile int i = 0; i < 500000; i++)
+    //   __asm volatile("nop");
   }
 }

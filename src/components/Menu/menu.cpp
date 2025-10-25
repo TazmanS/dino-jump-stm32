@@ -10,15 +10,11 @@ Menu::Menu(const MenuItem *root, uint8_t root_count)
 {
 }
 
-void Menu::next()
-{
-  if (!current_count)
-    return;
-  current_index = (uint8_t)((current_index + 1) % current_count);
+void Menu::next() {};
 
-  render();
-};
-void Menu::prev()
+void Menu::prev() {};
+
+void Menu::up()
 {
   if (!current_count)
     return;
@@ -28,8 +24,14 @@ void Menu::prev()
   render();
 };
 
-void Menu::up() {};
-void Menu::down() {};
+void Menu::down()
+{
+  if (!current_count)
+    return;
+  current_index = (uint8_t)((current_index + 1) % current_count);
+
+  render();
+};
 
 void Menu::render() const
 {

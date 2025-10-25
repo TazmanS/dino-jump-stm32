@@ -3,12 +3,12 @@
 #include "./components/Menu/menu.hpp"
 #include "./components/Menu/menu-config.hpp"
 
-DinoJump::DinoJump() : menu(root_items, menu_length), navigation()
+DinoJump::DinoJump() : menu(root_items, menu_length), navigation() {};
+
+void DinoJump::start()
 {
   menu.render();
 };
-
-void DinoJump::start() {};
 
 void DinoJump::calculateMovement(int16_t x, int16_t y)
 {
