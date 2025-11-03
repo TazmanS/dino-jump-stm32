@@ -12,9 +12,14 @@ public:
 
   void start();
   void calculateMovement(int16_t x, int16_t y);
+  void next();
+  void prev();
+
+  static void onExti4(); // prev
+  static void onExti5(); // next
 
 private:
-  Menu menu;
+  static Menu menu;
   Navigation navigation;
 
   bool is_game_start = false;

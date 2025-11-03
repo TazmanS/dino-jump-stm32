@@ -10,9 +10,38 @@ Menu::Menu(const MenuItem *root, uint8_t root_count)
 {
 }
 
-void Menu::next() {};
+MenuItem Menu::current_item()
+{
+  return current_items[current_index];
+}
 
-void Menu::prev() {};
+void Menu::next()
+{
+  // TODO add validations
+  MenuItem item = current_item();
+
+  if (item.child_count > 0 && item.children != nullptr)
+  {
+    stack[depth] = {current_items, current_count, depth};
+    depth++;
+
+    current_items = item.children;
+    current_count = item.child_count;
+    current_index = 0;
+
+    render();
+  }
+};
+
+void Menu::prev()
+{
+  // TODO add validations
+  current_items = stack[depth - 1].items;
+  current_count = stack[depth - 1].count;
+  current_index = 0;
+
+  render();
+};
 
 void Menu::up()
 {
@@ -33,6 +62,10 @@ void Menu::down()
   render();
 };
 
+void Menu::left() {};
+
+void Menu::right() {};
+
 void Menu::render() const
 {
   display_clear();
@@ -41,5 +74,6 @@ void Menu::render() const
 
 const char *Menu::current_title() const
 {
+
   return current_items[current_index].title;
 };

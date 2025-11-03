@@ -24,13 +24,13 @@ Direction calculateDirectionX(int16_t x)
   static bool was_pressed = false;
   if ((x > UP_TOGGLE_LINE) & !was_pressed)
   {
-    direction_x = Direction::PREV;
+    direction_x = Direction::LEFT;
 
     was_pressed = true;
   }
   else if ((x < DOWN_TOGGLE_LINE) & !was_pressed)
   {
-    direction_x = Direction::NEXT;
+    direction_x = Direction::RIGHT;
 
     was_pressed = true;
   }

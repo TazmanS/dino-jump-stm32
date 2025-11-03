@@ -5,8 +5,8 @@
 
 enum class Direction
 {
-  PREV,
-  NEXT,
+  LEFT,
+  RIGHT,
   UP,
   DOWN,
   CENTER

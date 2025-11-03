@@ -31,6 +31,8 @@ public:
   void prev();
   void up();
   void down();
+  void left();
+  void right();
   void render() const;
 
   const char *current_title() const;
@@ -42,6 +44,8 @@ private:
     uint8_t count;
     uint8_t index;
   };
+
+  MenuItem current_item();
 
   static constexpr uint8_t k_max_depth = 5;
 

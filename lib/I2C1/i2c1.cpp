@@ -25,7 +25,7 @@ void i2c1_init()
   GPIOB_PUPDR &= ~((3 << (2 * SDA_PIN)) | (3 << (2 * SCL_PIN)));
   GPIOB_PUPDR |= (1 << (2 * SDA_PIN)) | (1 << (2 * SCL_PIN));
 
-  I2C1_CR1 &= ~(1 << 0); // disable
-  I2C1_TIMINGR = 0x00303D5B;
-  I2C1_CR1 |= (1 << 0); // enable
+  I2C1_CR1 &= ~(1 << 0);     // disable
+  I2C1_TIMINGR = 0x00303D5B; // speed 0x00312434
+  I2C1_CR1 |= (1 << 0);      // enable
 }

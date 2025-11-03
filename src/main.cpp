@@ -25,7 +25,7 @@ void vTaskMenu(void *pvParameters)
 
     dino_jump.calculateMovement(adc_x, adc_y);
 
-    vTaskDelay(pdMS_TO_TICKS(50));
+    // vTaskDelay(pdMS_TO_TICKS(50));
   }
 }
 
@@ -37,7 +37,7 @@ void init()
   lcd_init();
   delay_ms(10);
 
-  // interruptors_config();
+  interruptors_config();
   joystick_adc_dma_init();
 }
 
