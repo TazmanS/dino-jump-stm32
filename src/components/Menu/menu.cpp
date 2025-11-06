@@ -17,10 +17,13 @@ MenuItem Menu::current_item()
 
 void Menu::next()
 {
-  // TODO add validations
   MenuItem item = current_item();
 
-  if (item.child_count > 0 && item.children != nullptr)
+  if (item.on_enter != nullptr)
+  {
+    item.on_enter();
+  }
+  else if (item.child_count > 0 && item.children != nullptr)
   {
     stack[depth] = {current_items, current_count, depth};
     depth++;
@@ -35,12 +38,14 @@ void Menu::next()
 
 void Menu::prev()
 {
-  // TODO add validations
-  current_items = stack[depth - 1].items;
-  current_count = stack[depth - 1].count;
-  current_index = 0;
+  if (depth != 0)
+  {
+    current_items = stack[depth - 1].items;
+    current_count = stack[depth - 1].count;
+    current_index = 0;
 
-  render();
+    render();
+  }
 };
 
 void Menu::up()

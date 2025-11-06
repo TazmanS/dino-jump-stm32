@@ -1,10 +1,10 @@
 #include "./menu-actions.hpp"
+#include "../DinoJump/dino-jump.hpp"
 
-void start_action() {};
-
-void about_action() {};
-
-void settings_action() {};
+void start_action()
+{
+  dino_jump.start_game();
+};
 
 void save_difficulty(int16_t new_value) {};
 

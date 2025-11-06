@@ -15,25 +15,25 @@ void DinoJump::start()
 {
   menu.render();
 
-  EXTI5_callback(&DinoJump::onExti5);
-  EXTI4_callback(&DinoJump::onExti4);
+  EXTI5_callback(&DinoJump::on_EXTI5);
+  EXTI4_callback(&DinoJump::on_EXTI4);
 };
 
-void DinoJump::onExti4()
+void DinoJump::on_EXTI4()
 {
   dino_jump.prev();
 }
 
-void DinoJump::onExti5()
+void DinoJump::on_EXTI5()
 {
   dino_jump.next();
 }
 
-void DinoJump::calculateMovement(int16_t x, int16_t y)
+void DinoJump::calculate_movement(int16_t x, int16_t y)
 {
   auto [dx, dy] = navigation.getParams(x, y);
 
-  if (is_game_start)
+  if (is_game_started)
   {
   }
   else
@@ -73,6 +73,11 @@ void DinoJump::next()
   menu.next();
 
   usart_send_str("EXTI5_IRQHandler, next \r\n");
+}
+
+void DinoJump::start_game()
+{
+  dino_jump.is_game_started = true;
 }
 
 DinoJump dino_jump;

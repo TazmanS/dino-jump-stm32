@@ -23,7 +23,7 @@ void vTaskMenu(void *pvParameters)
     uint16_t adc_x = adc_get_x();
     uint16_t adc_y = adc_get_y();
 
-    dino_jump.calculateMovement(adc_x, adc_y);
+    dino_jump.calculate_movement(adc_x, adc_y);
 
     // vTaskDelay(pdMS_TO_TICKS(50));
   }
