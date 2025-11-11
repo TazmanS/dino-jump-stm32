@@ -14,6 +14,8 @@
 #include "dma.hpp"
 #include <stdio.h>
 
+#include "components/Game/game.hpp"
+
 void vTaskMenu(void *pvParameters)
 {
   (void)pvParameters;
@@ -48,13 +50,28 @@ int main(void)
   usart_send_str("Terminal ready\r\n");
   // display_print("Hello Worlds");
 
-  dino_jump.start();
+  // dino_jump.start();
+  Game game = Game();
+  game.init();
 
-  xTaskCreate((TaskFunction_t)vTaskMenu, "menu", 128, NULL, 1, NULL);
-  vTaskStartScheduler();
+  // xTaskCreate((TaskFunction_t)vTaskMenu, "menu", 128, NULL, 1, NULL);
+  // vTaskStartScheduler();
 
   while (1)
   {
+
+    // lcd_set_cursor(0, 5);
+    // display_print(" ");
+    // lcd_set_cursor(1, 5);
+    // lcd_send_data(DINO_INDEX);
+    // delay_ms(300);
+
+    // lcd_set_cursor(1, 5);
+    // display_print(" ");
+    // lcd_set_cursor(0, 5);
+    // lcd_send_data(DINO_STEP_INDEX);
+    // delay_ms(300);
+
     // char buf[16];
     // uint16_t val = adc_get_x();
     // sprintf(buf, "%u\r\n", val);
